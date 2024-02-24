@@ -5,8 +5,6 @@ import {
   Text,
   SafeAreaView,
   StyleSheet,
-  Touchable,
-  TouchableOpacity,
 } from 'react-native';
 
 function App() {
