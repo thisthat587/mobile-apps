@@ -1,27 +1,20 @@
 import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
-import {
-  View,
-  Text,
-  SafeAreaView,
-  StyleSheet,
-} from 'react-native';
-
-function App() {
+export default function App() {
   return (
-    <SafeAreaView>
-      <View>
-        <Text style={styles.text}>Hello World</Text>
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text>Hello, World!</Text>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  text: {
-    color: 'black', // Set the text color to black
-    fontSize: 20, // You can adjust the font size as needed
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'black',
   },
 });
 
-export default App;
