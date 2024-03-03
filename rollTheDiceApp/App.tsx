@@ -10,13 +10,13 @@ import DiceFour from './assets/Four.png';
 import DiceFive from './assets/Five.png';
 import DiceSix from './assets/Six.png';
 
-// TODO:
+
 
 type DiceProps = PropsWithChildren<{
   imageUrl: ImageSourcePropType
 }>
 
-const Dice = ({ imageUrl }: DiceProps): JSX.Element => {
+const Dice = ({ imageUrl }: DiceProps) => {
   return (
     <View>
       <Image style={styles.image} source={imageUrl} />
@@ -28,7 +28,14 @@ const App = () => {
   const [imagePath, setImagePath] = useState<ImageSourcePropType>(DiceOne);
 
   const rollTheDice = () => {
+
     const randomNumber = Math.floor(Math.random() * 6) + 1;
+    const options = {
+      enableVibrateFallback: true,
+      ignoreAndroidSystemSettings: false,
+    };
+
+    HapticFeedback.trigger('impactLight', options);
 
     switch (randomNumber) {
       case 1:
@@ -83,7 +90,7 @@ const styles = StyleSheet.create({
 
   },
   button: {
-    backgroundColor: 'aliceblue',
+    backgroundColor: '#93f8fa',
     padding: 16,
     borderRadius: 5,
     margin: 6,
