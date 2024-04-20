@@ -14,11 +14,18 @@ import {
 import Sound from 'react-native-sound';
 import Snackbar from 'react-native-snackbar';
 import Icons from './components/Icons';
-Sound.setCategory('Playback');
+// Sound.setCategory('Playback');
 function App(): JSX.Element {
   const [isCross, setIsCross] = useState<boolean>(false);
   const [gameWinner, setGameWinner] = useState<string>('');
   const [gameState, setGameState] = useState(new Array(9).fill('empty', 0, 9));
+
+  const buttonClickSound = new Sound('whoosh.mp3', Sound.MAIN_BUNDLE, error => {
+    if (error) {
+      console.log('Failed to load the sound', error);
+      return;
+    }
+  });
 
   const reloadGame = () => {
     setIsCross(false);
@@ -88,23 +95,7 @@ function App(): JSX.Element {
         textColor: '#FFFFFF',
       });
     }
-    const whoosh = new Sound(
-      'https://github.com/thisthat587/mobile-apps/blob/main/tictactoe/src/whoosh.mp3',
-      Sound.MAIN_BUNDLE,
-      (error) => {
-        if (error) {
-          console.log('failed to load the sound', error);
-          return;
-        }
-        whoosh.play(success => {
-          if (success) {
-            console.log('successfull finished playing...');
-          } else {
-            console.log('playback failed...');
-          }
-        });
-      },
-    );
+    buttonClickSound.play();
     if (gameState[itemNumber] === 'empty') {
       gameState[itemNumber] = isCross ? 'cross' : 'circle';
       setIsCross(!isCross);
